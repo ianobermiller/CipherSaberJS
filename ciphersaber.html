@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>CipherSaber Online</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <script src="ciphersaber.js"></script>
+        <script>
+        $(function() {
+            var $key = $('#key');
+            var $rounds = $('#rounds');
+            var $encrypted = $('#encrypted-message');
+            var $decrypted = $('#decrypted-message');
+
+            $('#decrypt').click(function() {
+                var sourceBytes = hexToBytes($encrypted.val().trim());
+                var keyBytes = stringToBytes($key.val());
+                var rounds = parseInt($rounds.val(), 10);
+                var outString = bytesToString(decrypt(sourceBytes, keyBytes, rounds));
+                $decrypted.val(outString);
+            });
+        });
+        </script>
+        <style>
+            ul, li {
+                list-style:none;
+                margin:0;
+                padding:0;
+            }
+
+            label {
+                display:block;
+            }
+
+            input, textarea {
+                width:400px;
+            }
+
+            textarea {
+                height:200px;
+            }
+        </style>
+    </head>
+
+    <body>
+
+    <ul>
+        <li>
+            <label for="key">Key</label>
+            <input type="text" id="key" value="asdfg" />
+        </li>
+        <li>
+            <label for="rounds">Rounds</label>
+            <input type="text" id="rounds" value="10" />
+        </li>
+        <li>
+            <label for="encrypted-message">Encrypted Message</label>
+            <textarea id="encrypted-message">ba 9a b4 cf fb 77 00 e6 18 e3 82 e8 fc c5 ab 98 13 b1 ab c4 36 ba 7d 5c de a1 a3 1f b7 2f b5 76 3c 44 cf c2 ac 77 af ee 19 ad</textarea>
+        </li>
+        <li>
+            <label for="decrypted-message">Decrypted Message</label>
+            <textarea id="decrypted-message"></textarea>
+        </li>
+        <li>
+            <button id="encrypt">Encrypt</button>
+            <button id="decrypt">Decrypt</button>
+        </li>
+    </ul>
+
+    </body>
+</html>
