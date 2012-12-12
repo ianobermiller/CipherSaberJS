@@ -19,6 +19,14 @@
                 var outString = bytesToString(decrypt(sourceBytes, keyBytes, rounds));
                 $decrypted.val(outString);
             });
+
+            $('#encrypt').click(function() {
+                var sourceBytes = stringToBytes($decrypted.val());
+                var keyBytes = stringToBytes($key.val());
+                var rounds = parseInt($rounds.val(), 10);
+                var outString = bytesToHex(encrypt(sourceBytes, keyBytes, rounds));
+                $encrypted.val(outString);
+            });
         });
         </script>
         <style>
